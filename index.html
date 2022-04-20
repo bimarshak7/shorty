@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>URL Shortner</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}"/>
+</head>
+<body>
+	<div class="block">
+		<h2>URL Shortner</h2>
+		<form action="/" method="post">
+			<input type="url" name="url" value="" placeholder="URL to shorten"required>
+			<input type="text" name="shortcode" value="" placeholder="Short Name">
+			<input type="submit" value="Shorten" class="but">
+		</form>
+	
+	{% if link %}
+		{{msg}}<br>
+		Here it is: <span id='short'>{{link}}</span>z
+		<center><button onclick="clipy()" class="copy">Copy to Clipboard</button></center>
+	{% else %}
+		{{msg}}
+	{% endif %}
+	
+	</div>
+	
+	<script>
+		function clipy(){
+				var copyText = document.getElementById("short").textContent;
+				console.log(copyText);
+				navigator.clipboard.writeText(copyText);
+			}
+	</script>
+</body>
+</html>
